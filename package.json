@@ -29,7 +29,12 @@
       "react-app",
       "react-app/jest",
       "prettier"
-    ]
+    ],
+    "rules": {
+      "react/self-closing-comp": [
+        "error"
+      ]
+    }
   },
   "browserslist": {
     "production": [
