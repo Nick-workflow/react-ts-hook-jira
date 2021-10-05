@@ -1,9 +1,11 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-05 03:15:55
+ * @LastEditTime: 2021-10-05 23:04:30
  * @Description: file content
  */
+
+import { useEffect, useState } from "react";
 
 export const isFalsy = (value) => (value === 0 ? false : !value);
 
@@ -17,4 +19,19 @@ export const cleanObject = (object) => {
     }
   });
   return result;
+};
+
+export const useMount = (callback) => {
+  useEffect(() => {
+    callback();
+  }, []);
+};
+
+export const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() => {
+    const timeout = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(timeout);
+  }, [value, delay]);
+  return debouncedValue;
 };
