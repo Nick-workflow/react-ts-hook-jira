@@ -1,3 +1,9 @@
+/*
+ * @Author: YangTao(Niklaus)
+ * @LastEditors: YangTao(Niklaus)
+ * @LastEditTime: 2021-10-08 17:50:05
+ * @Description: file content
+ */
 import qs from "qs";
 import { useEffect, useState } from "react";
 import { cleanObject, useDebounce, useMount } from "utils";
@@ -14,7 +20,7 @@ export const ProjectListScreen = () => {
   });
   const [list, setList] = useState([]);
 
-  const debouncedParam = useDebounce(param, 2000);
+  const debouncedParam = useDebounce(param, 500);
 
   useEffect(() => {
     fetch(
