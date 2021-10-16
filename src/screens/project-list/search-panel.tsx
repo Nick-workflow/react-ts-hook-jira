@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-08 16:39:17
+ * @LastEditTime: 2021-10-14 17:34:38
  * @Description: file content
  */
 
@@ -11,6 +11,7 @@ export interface User {
   email: string;
   title: string;
   organization: string;
+  token: string;
 }
 interface SearchPanelProps {
   users: User[];

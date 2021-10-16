@@ -1,0 +1,19 @@
+/*
+ * @Author: YangTao(Niklaus)
+ * @LastEditors: YangTao(Niklaus)
+ * @LastEditTime: 2021-10-16 14:33:42
+ * @Description: file content
+ */
+
+import { useAuth } from "context/auth-contex";
+import { ProjectListScreen } from "screens/project-list";
+
+export const AuthenticatedApp = () => {
+  const { logout } = useAuth();
+  return (
+    <div>
+      <button onClick={logout}>登出</button>
+      <ProjectListScreen />
+    </div>
+  );
+};
