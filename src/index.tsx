@@ -1,10 +1,17 @@
+/*
+ * @Author: YangTao(Niklaus)
+ * @LastEditors: YangTao(Niklaus)
+ * @LastEditTime: 2021-10-18 17:36:20
+ * @Description: file content
+ */
 import { AppProviders } from "context";
 import { loadDevTools } from "jira-dev-tool";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+// 务必在 jira-dev-tool 后引入
+import "antd/dist/antd.less";
 
 loadDevTools(() =>
   ReactDOM.render(
