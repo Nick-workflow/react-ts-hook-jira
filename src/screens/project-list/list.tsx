@@ -1,11 +1,11 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-20 23:23:32
+ * @LastEditTime: 2021-10-20 23:40:12
  * @Description: file content
  */
 
-import { Table } from "antd";
+import { Table, TableProps } from "antd";
 import dayjs from "dayjs";
 import { User } from "./search-panel";
 interface Project {
@@ -16,15 +16,16 @@ interface Project {
   organization: string;
   created: number;
 }
-interface ListProps {
-  list: Project[];
+// 将 List 组件的参数透传到 Table 组件中
+interface ListProps extends TableProps<Project> {
   users: User[];
 }
-export const List = ({ list, users }: ListProps) => {
+export const List = ({ users, ...props }: ListProps) => {
   return (
     <Table
       rowKey="id"
       pagination={false}
+      {...props}
       columns={[
         {
           title: "名称",
@@ -59,7 +60,6 @@ export const List = ({ list, users }: ListProps) => {
           },
         },
       ]}
-      dataSource={list}
     />
   );
 };

@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-20 03:13:59
+ * @LastEditTime: 2021-10-20 23:37:10
  * @Description: file content
  */
 
@@ -36,7 +36,7 @@ export const ProjectListScreen = () => {
     <Container>
       <h1>项目列表</h1>
       <SearchPanel users={users} param={param} setParam={setParam} />
-      <List users={users} list={list} />
+      <List users={users} dataSource={list} />
     </Container>
   );
 };
