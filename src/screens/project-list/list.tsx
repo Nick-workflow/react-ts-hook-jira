@@ -1,14 +1,14 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-20 23:40:12
+ * @LastEditTime: 2021-10-21 00:12:23
  * @Description: file content
  */
 
 import { Table, TableProps } from "antd";
 import dayjs from "dayjs";
 import { User } from "./search-panel";
-interface Project {
+export interface Project {
   id: string;
   name: string;
   personId: string;
