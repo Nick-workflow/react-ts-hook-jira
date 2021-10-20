@@ -1,22 +1,24 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-18 17:36:20
+ * @LastEditTime: 2021-10-20 23:19:10
  * @Description: file content
  */
-import { AppProviders } from "context";
-import { loadDevTools } from "jira-dev-tool";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { loadServer, DevTools } from "jira-dev-tool";
 // 务必在 jira-dev-tool 后引入
 import "antd/dist/antd.less";
+import { AppProviders } from "context";
 
-loadDevTools(() =>
+loadServer(() =>
   ReactDOM.render(
     <React.StrictMode>
       <AppProviders>
+        <DevTools />
         <App />
       </AppProviders>
     </React.StrictMode>,

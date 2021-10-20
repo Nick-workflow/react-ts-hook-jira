@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-20 03:18:39
+ * @LastEditTime: 2021-10-20 23:23:32
  * @Description: file content
  */
 
@@ -23,6 +23,7 @@ interface ListProps {
 export const List = ({ list, users }: ListProps) => {
   return (
     <Table
+      rowKey="id"
       pagination={false}
       columns={[
         {
