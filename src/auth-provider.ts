@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-14 19:20:43
+ * @LastEditTime: 2021-10-21 17:40:21
  * @Description: 在真实环境中，如果使用 firebase 这种第三方服务的话，本文件不需要开发者开发
  */
 
@@ -27,7 +27,7 @@ export const login = (data: { username: string; password: string }) => {
     if (response.ok) {
       return handleUserResponse(await response.json());
     } else {
-      return Promise.reject(data);
+      return Promise.reject(await response.json());
     }
   });
 };
@@ -41,7 +41,7 @@ export const register = (data: { username: string; password: string }) => {
     if (response.ok) {
       return handleUserResponse(await response.json());
     } else {
-      return Promise.reject(data);
+      return Promise.reject(await response.json());
     }
   });
 };
