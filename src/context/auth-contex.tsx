@@ -1,15 +1,17 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-16 19:00:51
+ * @LastEditTime: 2021-10-24 03:03:34
  * @Description: file content
  */
 
 import * as auth from "auth-provider";
-import React, { ReactNode, useState } from "react";
+import { FullPageErrorCallback, FullPageLoading } from "components/lib";
+import React, { ReactNode } from "react";
 import { User } from "screens/project-list/search-panel";
 import { useMount } from "utils";
 import { http } from "utils/http";
+import { useAsync } from "utils/use-async";
 
 interface AuthForm {
   username: string;
@@ -39,7 +41,15 @@ const AuthContex = React.createContext<
 AuthContex.displayName = "AuthContex";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const {
+    data: user,
+    error,
+    isLoading,
+    isIdle,
+    isError,
+    run,
+    setData: setUser,
+  } = useAsync<User | null>();
 
   // point free 消参 (参数相同)
   const login = (form: AuthForm) => auth.login(form).then(setUser);
@@ -47,8 +57,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => auth.logout().then(() => setUser(null));
 
   useMount(() => {
-    bootstrapUser().then(setUser);
+    run(bootstrapUser());
   });
+
+  if (isIdle || isLoading) {
+    return <FullPageLoading />;
+  }
+
+  if (isError) {
+    return <FullPageErrorCallback error={error} />;
+  }
 
   return (
     <AuthContex.Provider
