@@ -1,11 +1,11 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-26 18:34:23
+ * @LastEditTime: 2021-10-26 19:10:34
  * @Description: file content
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
@@ -43,7 +43,7 @@ export const useDocumentTitle = (
   title: string,
   keepOnUnmount: boolean = true
 ) => {
-  const oldTitle = document.title;
+  const oldTitle = useRef(document.title).current;
 
   useEffect(() => {
     document.title = title;
@@ -55,5 +55,5 @@ export const useDocumentTitle = (
         document.title = oldTitle;
       }
     };
-  }, []);
+  }, [keepOnUnmount, oldTitle]);
 };
