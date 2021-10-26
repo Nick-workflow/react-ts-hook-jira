@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-20 23:01:31
+ * @LastEditTime: 2021-10-26 18:34:23
  * @Description: file content
  */
 
@@ -37,4 +37,23 @@ export const useDebounce = <V>(value: V, delay?: number) => {
     return () => clearTimeout(timeout);
   }, [value, delay]);
   return debouncedValue;
+};
+
+export const useDocumentTitle = (
+  title: string,
+  keepOnUnmount: boolean = true
+) => {
+  const oldTitle = document.title;
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+    return () => {
+      if (!keepOnUnmount) {
+        document.title = oldTitle;
+      }
+    };
+  }, []);
 };

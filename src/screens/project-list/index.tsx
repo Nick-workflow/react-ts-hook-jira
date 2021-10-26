@@ -1,14 +1,14 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-21 04:31:50
+ * @LastEditTime: 2021-10-26 18:41:21
  * @Description: file content
  */
 
 import styled from "@emotion/styled";
 import { Typography } from "antd";
 import { useState } from "react";
-import { useDebounce } from "utils";
+import { useDebounce, useDocumentTitle } from "utils";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
 import { List } from "./list";
@@ -25,6 +25,8 @@ export const ProjectListScreen = () => {
   const { isLoading, error, data: list } = useProjects(debouncedParam);
 
   const { data: users } = useUsers();
+
+  useDocumentTitle("项目列表", false);
 
   return (
     <Container>
