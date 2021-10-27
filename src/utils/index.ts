@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-26 19:10:34
+ * @LastEditTime: 2021-10-27 18:32:14
  * @Description: file content
  */
 
@@ -57,3 +57,5 @@ export const useDocumentTitle = (
     };
   }, [keepOnUnmount, oldTitle]);
 };
+
+export const resetRoute = () => (window.location.href = window.location.origin);
