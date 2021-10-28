@@ -1,10 +1,11 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-20 23:19:10
+ * @LastEditTime: 2021-10-28 02:36:14
  * @Description: file content
  */
 
+import "./wdyr";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
