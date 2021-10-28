@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-29 03:36:44
+ * @LastEditTime: 2021-10-29 04:14:57
  * @Description: file content
  */
 
@@ -30,7 +30,7 @@ export const IdSelect = (props: IdSelectProps) => {
   const { value, onChange, defaultOptionName, options, ...restProps } = props;
   return (
     <Select
-      value={toNumber(value)}
+      value={options?.length ? toNumber(value) : 0}
       onChange={(value) => onChange(toNumber(value) || undefined)}
       {...restProps}
     >

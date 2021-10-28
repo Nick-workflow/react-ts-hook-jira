@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-28 03:01:31
+ * @LastEditTime: 2021-10-29 04:14:20
  * @Description: file content
  */
 
@@ -9,22 +9,20 @@ import styled from "@emotion/styled";
 import { Typography } from "antd";
 import { useDebounce, useDocumentTitle } from "utils";
 import { useProjects } from "utils/project";
-import { useUrlQueryParam } from "utils/url";
 import { useUsers } from "utils/user";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
+import { usePorjectsSearchParams } from "./util";
 
+// 基本类型，可以放到依赖里；组件状态，可以放到依赖里；非组件状态的对象，绝对不可以放到依赖里
 export const ProjectListScreen = () => {
-  // 基本类型，可以放到依赖里；组件状态，可以放到依赖里；非组件状态的对象，绝对不可以放到依赖里
-  const [param, setParam] = useUrlQueryParam(["name", "personId"]);
+  useDocumentTitle("项目列表", false);
 
-  const debouncedParam = useDebounce(param, 500);
+  const [param, setParam] = usePorjectsSearchParams();
 
-  const { isLoading, error, data: list } = useProjects(debouncedParam);
+  const { isLoading, error, data: list } = useProjects(useDebounce(param, 500));
 
   const { data: users } = useUsers();
-
-  useDocumentTitle("项目列表", false);
 
   return (
     <Container>
