@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-24 02:37:19
+ * @LastEditTime: 2021-10-31 03:26:08
  * @Description: file content
  */
 
@@ -33,17 +33,31 @@ export const useAsync = <D>(
     ...initialState,
   });
 
+  // useState 直接传入函数的含义是：惰性初始化；所以要用 useState 保存函数，不能直接传入函数
+  const [retry, setRetry] = useState(() => () => {});
+
   const setData = (data: D) => setState({ data, stat: "success", error: null });
 
   const setError = (error: Error) =>
     setState({ error, stat: "error", data: null });
 
   // run 用来触发异步请求
-  const run = (promise: Promise<D>) => {
+  const run = (
+    promise: Promise<D>,
+    runConfig?: { retry: () => Promise<D> }
+  ) => {
     if (!promise || !promise.then) {
       throw new Error("请传入 Promise 类型数据");
     }
+
+    setRetry(() => () => {
+      if (runConfig?.retry) {
+        run(runConfig.retry(), runConfig);
+      }
+    });
+
     setState({ ...state, stat: "loading" });
+
     return promise
       .then((data) => {
         setData(data);
@@ -64,6 +78,7 @@ export const useAsync = <D>(
     isError: state.stat === "error",
     isSuccess: state.stat === "success",
     run,
+    retry,
     setData,
     setError,
     ...state,
