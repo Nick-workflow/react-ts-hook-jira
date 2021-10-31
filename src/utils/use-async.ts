@@ -1,11 +1,12 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-31 03:26:08
+ * @LastEditTime: 2021-10-31 18:15:12
  * @Description: file content
  */
 
 import { useState } from "react";
+import { useMountedRef } from "utils";
 
 interface State<D> {
   error: Error | null;
@@ -32,6 +33,8 @@ export const useAsync = <D>(
     ...defaultInitialState,
     ...initialState,
   });
+
+  const mountedRef = useMountedRef();
 
   // useState 直接传入函数的含义是：惰性初始化；所以要用 useState 保存函数，不能直接传入函数
   const [retry, setRetry] = useState(() => () => {});
@@ -60,7 +63,9 @@ export const useAsync = <D>(
 
     return promise
       .then((data) => {
-        setData(data);
+        if (mountedRef.current) {
+          setData(data);
+        }
         return data;
       })
       .catch((error) => {

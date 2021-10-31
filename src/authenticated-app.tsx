@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-28 00:00:22
+ * @LastEditTime: 2021-10-31 18:17:53
  * @Description: file content
  */
 
@@ -48,7 +48,7 @@ const PageHeader = () => {
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item>
+              <Menu.Item key={"logout"}>
                 <Button type="link" onClick={logout}>
                   登出
                 </Button>
