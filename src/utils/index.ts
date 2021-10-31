@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-31 18:13:20
+ * @LastEditTime: 2021-10-31 18:50:29
  * @Description: file content
  */
 
@@ -27,6 +27,7 @@ export const cleanObject = (object: { [key: string]: unknown }) => {
 export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 
