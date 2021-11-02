@@ -1,12 +1,12 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-24 03:00:59
+ * @LastEditTime: 2021-11-02 16:33:34
  * @Description: file content
  */
 
 import styled from "@emotion/styled";
-import { Spin, Typography } from "antd";
+import { Button, Spin, Typography } from "antd";
 import { DevTools } from "jira-dev-tool";
 
 export const Row = styled.div<{
@@ -49,3 +49,7 @@ export const FullPageErrorCallback = ({ error }: { error: Error | null }) => (
     <Typography.Text type="danger">{error?.message}</Typography.Text>
   </FullPage>
 );
+
+export const ButtonNoPadding = styled(Button)`
+  padding: 0;
+`;
