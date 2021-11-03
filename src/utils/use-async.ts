@@ -1,11 +1,11 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-31 18:44:12
+ * @LastEditTime: 2021-11-04 02:54:21
  * @Description: file content
  */
 
-import { useCallback, useState } from "react";
+import { useCallback, useReducer, useState } from "react";
 import { useMountedRef } from "utils";
 
 interface State<D> {
@@ -24,29 +24,41 @@ const defaultConfig = {
   throwOnError: false,
 };
 
+const useSafeDispatch = <T>(dispatch: (...args: T[]) => void) => {
+  const mountedRef = useMountedRef();
+
+  return useCallback(
+    (...args: T[]) => (mountedRef.current ? dispatch(...args) : void 0),
+    [dispatch, mountedRef]
+  );
+};
+
 export const useAsync = <D>(
   initialState?: State<D>,
   initialConfig?: typeof defaultConfig
 ) => {
   const config = { ...defaultConfig, ...initialConfig };
-  const [state, setState] = useState<State<D>>({
-    ...defaultInitialState,
-    ...initialState,
-  });
+  const [state, dispatch] = useReducer(
+    (state: State<D>, action: Partial<State<D>>) => ({ ...state, ...action }),
+    {
+      ...defaultInitialState,
+      ...initialState,
+    }
+  );
 
-  const mountedRef = useMountedRef();
+  const safeDispatch = useSafeDispatch(dispatch);
 
   // useState 直接传入函数的含义是：惰性初始化；所以要用 useState 保存函数，不能直接传入函数
   const [retry, setRetry] = useState(() => () => {});
 
   const setData = useCallback(
-    (data: D) => setState({ data, stat: "success", error: null }),
-    []
+    (data: D) => safeDispatch({ data, stat: "success", error: null }),
+    [safeDispatch]
   );
 
   const setError = useCallback(
-    (error: Error) => setState({ error, stat: "error", data: null }),
-    []
+    (error: Error) => safeDispatch({ error, stat: "error", data: null }),
+    [safeDispatch]
   );
 
   // run 用来触发异步请求
@@ -63,13 +75,11 @@ export const useAsync = <D>(
       });
 
       // setState 的函数用法避免依赖 state 造成循环
-      setState((prevState) => ({ ...prevState, stat: "loading" }));
+      safeDispatch({ stat: "loading" });
 
       return promise
         .then((data) => {
-          if (mountedRef.current) {
-            setData(data);
-          }
+          setData(data);
           return data;
         })
         .catch((error) => {
@@ -80,7 +90,7 @@ export const useAsync = <D>(
           return error;
         });
     },
-    [config.throwOnError, mountedRef, setData, setError]
+    [config.throwOnError, setData, setError, safeDispatch]
   );
 
   return {
