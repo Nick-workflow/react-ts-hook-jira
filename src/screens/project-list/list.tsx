@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-02 17:27:38
+ * @LastEditTime: 2021-11-09 22:15:22
  * @Description: file content
  */
 
@@ -12,6 +12,7 @@ import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { useEditProject } from "utils/project";
 import { User } from "./search-panel";
+import { useProjectModal } from "./util";
 export interface Project {
   id: number;
   name: string;
@@ -24,9 +25,9 @@ export interface Project {
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
-  projectButton: JSX.Element;
 }
 export const List = ({ users, ...props }: ListProps) => {
+  const { open } = useProjectModal();
   const { mutate } = useEditProject();
 
   const pinProject = (id: number) => (pin: boolean) =>
@@ -89,7 +90,11 @@ export const List = ({ users, ...props }: ListProps) => {
               <Dropdown
                 overlay={
                   <Menu>
-                    <Menu.Item key="edit">{props.projectButton}</Menu.Item>
+                    <Menu.Item key="edit">
+                      <ButtonNoPadding onClick={open} type="link">
+                        编辑
+                      </ButtonNoPadding>
+                    </Menu.Item>
                   </Menu>
                 }
               >

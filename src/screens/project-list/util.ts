@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-29 04:16:25
+ * @LastEditTime: 2021-11-09 22:21:55
  * @Description: file content
  */
 
@@ -22,4 +22,15 @@ export const usePorjectsSearchParams = () => {
     ),
     setParam,
   ] as const;
+};
+
+export const useProjectModal = () => {
+  const [{ projectCreate }, setProjectCreate] = useUrlQueryParam([
+    "projectCreate",
+  ]);
+
+  const open = () => setProjectCreate({ projectCreate: true });
+  const close = () => setProjectCreate({ projectCreate: undefined });
+
+  return { projectModalOpen: projectCreate === "true", open, close };
 };
