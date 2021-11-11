@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-09 22:12:02
+ * @LastEditTime: 2021-11-12 00:37:54
  * @Description: file content
  */
 
@@ -22,7 +22,7 @@ export const ProjectPopover = () => {
       <Typography.Text type="secondary">收藏项目</Typography.Text>
       <List>
         {pinnedProjects?.map((project) => (
-          <List.Item>
+          <List.Item key={project.id}>
             <List.Item.Meta title={project.name} />
           </List.Item>
         ))}

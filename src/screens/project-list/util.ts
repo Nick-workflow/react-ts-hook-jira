@@ -1,11 +1,12 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-09 22:21:55
+ * @LastEditTime: 2021-11-12 01:29:32
  * @Description: file content
  */
 
 import { useMemo } from "react";
+import { useProject } from "utils/project";
 import { useUrlQueryParam } from "utils/url";
 
 // 项目列表搜索参数
@@ -29,8 +30,32 @@ export const useProjectModal = () => {
     "projectCreate",
   ]);
 
-  const open = () => setProjectCreate({ projectCreate: true });
-  const close = () => setProjectCreate({ projectCreate: undefined });
+  const [{ editingProjectId }, setEditingProjectId] = useUrlQueryParam([
+    "editingProjectId",
+  ]);
 
-  return { projectModalOpen: projectCreate === "true", open, close };
+  const { data: editingProject, isLoading } = useProject(
+    Number(editingProjectId)
+  );
+
+  const open = () => setProjectCreate({ projectCreate: true });
+  const close = () => {
+    if (projectCreate) {
+      setProjectCreate({ projectCreate: undefined });
+    }
+    if (editingProjectId) {
+      setEditingProjectId({ editingProjectId: undefined });
+    }
+  };
+  const startEdit = (id: number) =>
+    setEditingProjectId({ editingProjectId: id });
+
+  return {
+    projectModalOpen: projectCreate === "true" || Boolean(editingProjectId),
+    open,
+    close,
+    startEdit,
+    editingProject,
+    isLoading,
+  };
 };

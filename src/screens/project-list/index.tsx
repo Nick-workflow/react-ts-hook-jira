@@ -1,13 +1,12 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-09 22:12:52
+ * @LastEditTime: 2021-11-11 19:34:08
  * @Description: file content
  */
 
 import styled from "@emotion/styled";
-import { Typography } from "antd";
-import { ButtonNoPadding, Row } from "components/lib";
+import { ButtonNoPadding, ErrorBox, Row } from "components/lib";
 import { useDebounce, useDocumentTitle } from "utils";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
@@ -23,12 +22,7 @@ export const ProjectListScreen = () => {
 
   const [param, setParam] = usePorjectsSearchParams();
 
-  const {
-    isLoading,
-    error,
-    data: list,
-    retry,
-  } = useProjects(useDebounce(param, 500));
+  const { isLoading, error, data: list } = useProjects(useDebounce(param, 500));
 
   const { data: users } = useUsers();
 
@@ -42,15 +36,8 @@ export const ProjectListScreen = () => {
       </Row>
 
       <SearchPanel users={users || []} param={param} setParam={setParam} />
-      {error ? (
-        <Typography.Text type="danger">{error.message}</Typography.Text>
-      ) : null}
-      <List
-        refresh={retry}
-        loading={isLoading}
-        users={users || []}
-        dataSource={list || []}
-      />
+      <ErrorBox error={error} />
+      <List loading={isLoading} users={users || []} dataSource={list || []} />
     </Container>
   );
 };

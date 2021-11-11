@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-11 19:16:33
+ * @LastEditTime: 2021-11-11 19:18:37
  * @Description: file content
  */
 
@@ -46,7 +46,7 @@ export const FullPageLoading = () => (
 export const FullPageErrorCallback = ({ error }: { error: Error | null }) => (
   <FullPage>
     <DevTools />
-    <Typography.Text type="danger">{error?.message}</Typography.Text>
+    <ErrorBox error={error} />
   </FullPage>
 );
 

@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-09 22:15:22
+ * @LastEditTime: 2021-11-12 00:13:23
  * @Description: file content
  */
 
@@ -27,11 +27,11 @@ interface ListProps extends TableProps<Project> {
   refresh?: () => void;
 }
 export const List = ({ users, ...props }: ListProps) => {
-  const { open } = useProjectModal();
+  const { startEdit } = useProjectModal();
   const { mutate } = useEditProject();
 
-  const pinProject = (id: number) => (pin: boolean) =>
-    mutate({ id, pin }).then(props.refresh);
+  const pinProject = (id: number) => (pin: boolean) => mutate({ id, pin });
+  const editProject = (id: number) => () => startEdit(id);
 
   return (
     <Table
@@ -90,11 +90,10 @@ export const List = ({ users, ...props }: ListProps) => {
               <Dropdown
                 overlay={
                   <Menu>
-                    <Menu.Item key="edit">
-                      <ButtonNoPadding onClick={open} type="link">
-                        编辑
-                      </ButtonNoPadding>
+                    <Menu.Item key="edit" onClick={editProject(project.id)}>
+                      编辑
                     </Menu.Item>
+                    <Menu.Item key="delete">删除</Menu.Item>
                   </Menu>
                 }
               >
