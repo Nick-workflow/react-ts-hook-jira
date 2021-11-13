@@ -1,13 +1,13 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-13 22:19:54
+ * @LastEditTime: 2021-11-13 22:54:58
  * @Description: file content
  */
 
 import { useMemo } from "react";
 import { useProject } from "utils/project";
-import { useUrlQueryParam } from "utils/url";
+import { useSetURLSearchParam, useUrlQueryParam } from "utils/url";
 
 // 项目列表搜索参数
 export const usePorjectsSearchParams = () => {
@@ -43,15 +43,10 @@ export const useProjectModal = () => {
     Number(editingProjectId)
   );
 
+  const setUrlParams = useSetURLSearchParam();
+
   const open = () => setProjectCreate({ projectCreate: true });
-  const close = () => {
-    if (projectCreate) {
-      setProjectCreate({ projectCreate: undefined });
-    }
-    if (editingProjectId) {
-      setEditingProjectId({ editingProjectId: undefined });
-    }
-  };
+  const close = () => setUrlParams({ projectCreate: "", editingProjectId: "" });
   const startEdit = (id: number) =>
     setEditingProjectId({ editingProjectId: id });
 
