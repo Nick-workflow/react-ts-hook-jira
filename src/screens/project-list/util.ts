@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-12 01:29:32
+ * @LastEditTime: 2021-11-13 22:19:54
  * @Description: file content
  */
 
@@ -23,6 +23,11 @@ export const usePorjectsSearchParams = () => {
     ),
     setParam,
   ] as const;
+};
+
+export const useProjectsQueryKey = () => {
+  const [params] = usePorjectsSearchParams();
+  return ["projects", params];
 };
 
 export const useProjectModal = () => {
