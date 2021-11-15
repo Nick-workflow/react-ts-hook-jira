@@ -1,13 +1,14 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-24 03:03:34
+ * @LastEditTime: 2021-11-15 23:09:28
  * @Description: file content
  */
 
 import * as auth from "auth-provider";
 import { FullPageErrorCallback, FullPageLoading } from "components/lib";
 import React, { ReactNode } from "react";
+import { useQueryClient } from "react-query";
 import { User } from "screens/project-list/search-panel";
 import { useMount } from "utils";
 import { http } from "utils/http";
@@ -50,11 +51,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     run,
     setData: setUser,
   } = useAsync<User | null>();
+  const queryClient = useQueryClient();
 
   // point free 消参 (参数相同)
   const login = (form: AuthForm) => auth.login(form).then(setUser);
+
   const register = (form: AuthForm) => auth.register(form).then(setUser);
-  const logout = () => auth.logout().then(() => setUser(null));
+
+  const logout = () =>
+    auth.logout().then(() => {
+      setUser(null);
+      // 登出时清除已缓存的数据
+      queryClient.clear();
+    });
 
   useMount(() => {
     run(bootstrapUser());
