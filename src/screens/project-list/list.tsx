@@ -11,16 +11,9 @@ import { Pin } from "components/pin";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { useDeleteProject, useEditProject } from "utils/project";
-import { User } from "./search-panel";
+import { Project } from "../../types/project";
+import { User } from "../../types/user";
 import { useProjectModal, useProjectsQueryKey } from "./util";
-export interface Project {
-  id: number;
-  name: string;
-  personId: number;
-  pin: boolean;
-  organization: string;
-  created: number;
-}
 // 将 List 组件的参数透传到 Table 组件中
 interface ListProps extends TableProps<Project> {
   users: User[];

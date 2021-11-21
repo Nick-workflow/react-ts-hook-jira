@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-28 00:04:43
+ * @LastEditTime: 2021-11-15 23:17:29
  * @Description: file content
  */
 
@@ -21,7 +21,12 @@ export const ProjectScreen = () => {
         <Route path="epic" element={<EpicScreen />} />
         <Route
           path="*"
-          element={<Navigate to={window.location.pathname + "/kanban"} />}
+          element={
+            <Navigate
+              to={window.location.pathname + "/kanban"}
+              replace={true}
+            />
+          }
         />
       </Routes>
     </div>

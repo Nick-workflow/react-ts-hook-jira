@@ -1,22 +1,15 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-29 04:06:17
+ * @LastEditTime: 2021-11-15 23:37:07
  * @Description: file content
  */
 
 import { Form, Input } from "antd";
 import { UserSelect } from "components/user-select";
-import { Project } from "./list";
+import { Project } from "../../types/project";
+import { User } from "../../types/user";
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  title: string;
-  organization: string;
-  token: string;
-}
 interface SearchPanelProps {
   users: User[];
   param: Partial<Pick<Project, "name" | "personId">>;
