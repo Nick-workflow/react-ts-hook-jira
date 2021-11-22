@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-09 22:19:28
+ * @LastEditTime: 2021-11-23 04:07:29
  * @Description: file content
  */
 
@@ -89,5 +89,6 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
-  height: calc(100vh - 6rem);
+  display: flex;
+  overflow: hidden;
 `;

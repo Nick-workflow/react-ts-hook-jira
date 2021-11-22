@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-11 19:18:37
+ * @LastEditTime: 2021-11-23 03:47:26
  * @Description: file content
  */
 
@@ -62,4 +62,11 @@ export const ErrorBox = ({ error }: { error: unknown }) => {
 
 export const ButtonNoPadding = styled(Button)`
   padding: 0;
+`;
+
+export const ScreenContainer = styled.div`
+  padding: 3.2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
