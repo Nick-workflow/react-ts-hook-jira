@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-23 04:10:02
+ * @LastEditTime: 2021-11-23 23:21:31
  * @Description: file content
  */
 
@@ -59,6 +59,7 @@ const Aside = styled.aside`
 const Main = styled.div`
   display: flex;
   box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 `;
 
 const Container = styled.div`

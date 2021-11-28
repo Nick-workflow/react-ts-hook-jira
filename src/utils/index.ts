@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-10-31 18:50:29
+ * @LastEditTime: 2021-11-25 16:00:57
  * @Description: file content
  */
 
@@ -60,6 +60,24 @@ export const useDocumentTitle = (
 };
 
 export const resetRoute = () => (window.location.href = window.location.origin);
+
+/**
+ * 传入一个对象，和键集合，返回对应的对象中的键值对
+ * @param obj
+ * @param keys
+ */
+export const subset = <
+  O extends { [key in string]: unknown },
+  K extends keyof O
+>(
+  obj: O,
+  keys: K[]
+) => {
+  const filteredEntries = Object.entries(obj).filter(([key]) =>
+    keys.includes(key as K)
+  );
+  return Object.fromEntries(filteredEntries) as Pick<O, K>;
+};
 
 /**
  * 返回组件的挂载状态，如果还没挂载或者已经卸载，返回 false；反之，返回 true。

@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-13 17:55:23
+ * @LastEditTime: 2021-11-23 23:19:39
  * @Description: file content
  */
 
@@ -44,4 +44,4 @@ export const useEditConfig = (queryKey: QueryKey) =>
   );
 
 export const useAddConfig = (queryKey: QueryKey) =>
-  useConfig(queryKey, (target, old) => (old ? [...old, ...target] : []));
+  useConfig(queryKey, (target, old) => (old ? [...old, target] : []));
