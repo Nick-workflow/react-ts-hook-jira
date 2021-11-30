@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-23 04:07:29
+ * @LastEditTime: 2021-11-30 03:24:31
  * @Description: file content
  */
 
@@ -59,7 +59,7 @@ const User = () => {
     <Dropdown
       overlay={
         <Menu>
-          <Menu.Item key={"logout"}>
+          <Menu.Item key="logout">
             <Button type="link" onClick={logout}>
               登出
             </Button>
