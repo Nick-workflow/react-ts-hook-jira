@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-30 03:24:31
+ * @LastEditTime: 2021-12-01 00:31:33
  * @Description: file content
  */
 
@@ -17,6 +17,7 @@ import { ProjectScreen } from "screens/project";
 import { resetRoute } from "utils";
 import { ProjectModal } from "screens/project-list/project-modal";
 import { ProjectPopover } from "components/project-popover";
+import { UserPopover } from "components/user-popover";
 
 export const AuthenticatedApp = () => {
   return (
@@ -44,7 +45,7 @@ const PageHeader = () => {
           <SoftwareLogo width="18rem" color="rgb(38,132,255)" />
         </ButtonNoPadding>
         <ProjectPopover />
-        <span>用户</span>
+        <UserPopover />
       </HeaderLeft>
       <HeaderRight>
         <User />

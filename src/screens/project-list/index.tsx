@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-11 19:34:08
+ * @LastEditTime: 2021-12-01 00:20:28
  * @Description: file content
  */
 
@@ -47,4 +47,5 @@ export const ProjectListScreen = () => {
 
 const Container = styled.div`
   padding: 3.2rem;
+  width: 100%;
 `;

@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-12 00:37:54
+ * @LastEditTime: 2021-12-01 00:24:39
  * @Description: file content
  */
 
@@ -13,7 +13,7 @@ import { ButtonNoPadding } from "./lib";
 
 export const ProjectPopover = () => {
   const { open } = useProjectModal();
-  const { data: projects } = useProjects();
+  const { data: projects, refetch } = useProjects();
 
   const pinnedProjects = projects?.filter((project) => project.pin);
 
@@ -35,7 +35,11 @@ export const ProjectPopover = () => {
   );
 
   return (
-    <Popover placement="bottom" content={content}>
+    <Popover
+      onVisibleChange={() => refetch()}
+      placement="bottom"
+      content={content}
+    >
       <span>项目</span>
     </Popover>
   );
