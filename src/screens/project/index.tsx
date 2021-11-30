@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-23 23:21:31
+ * @LastEditTime: 2021-11-30 23:38:40
  * @Description: file content
  */
 
@@ -65,4 +65,5 @@ const Main = styled.div`
 const Container = styled.div`
   display: grid;
   grid-template-columns: 16rem 1fr;
+  width: 100%;
 `;
