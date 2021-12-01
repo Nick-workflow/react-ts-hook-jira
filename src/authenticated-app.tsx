@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-12-01 00:31:33
+ * @LastEditTime: 2021-12-02 03:22:00
  * @Description: file content
  */
 
@@ -19,7 +19,7 @@ import { ProjectModal } from "screens/project-list/project-modal";
 import { ProjectPopover } from "components/project-popover";
 import { UserPopover } from "components/user-popover";
 
-export const AuthenticatedApp = () => {
+export default () => {
   return (
     <Container>
       <Router>

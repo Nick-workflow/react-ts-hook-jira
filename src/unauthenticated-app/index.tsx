@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-11 19:20:37
+ * @LastEditTime: 2021-12-02 03:21:29
  * @Description: file content
  */
 
@@ -16,7 +16,7 @@ import right from "assets/right.svg";
 import { useDocumentTitle } from "utils";
 import { ErrorBox } from "components/lib";
 
-export const UnauthenticatedApp = () => {
+export default () => {
   const [isRegister, setIsRegister] = useState(false);
 
   const [error, setError] = useState<Error | null>(null);
