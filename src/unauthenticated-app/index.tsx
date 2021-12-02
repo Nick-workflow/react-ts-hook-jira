@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-12-02 03:21:29
+ * @LastEditTime: 2021-12-02 17:39:28
  * @Description: file content
  */
 
@@ -16,7 +16,7 @@ import right from "assets/right.svg";
 import { useDocumentTitle } from "utils";
 import { ErrorBox } from "components/lib";
 
-export default () => {
+export default function UnauthenticatedApp() {
   const [isRegister, setIsRegister] = useState(false);
 
   const [error, setError] = useState<Error | null>(null);
@@ -42,7 +42,7 @@ export default () => {
       </ShadowCard>
     </Container>
   );
-};
+}
 
 export const LongButton = styled(Button)`
   width: 100%;

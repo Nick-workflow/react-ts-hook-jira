@@ -1,12 +1,17 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-12-01 00:20:28
+ * @LastEditTime: 2021-12-02 17:22:44
  * @Description: file content
  */
 
-import styled from "@emotion/styled";
-import { ButtonNoPadding, ErrorBox, Row } from "components/lib";
+import {
+  ButtonNoPadding,
+  ErrorBox,
+  Row,
+  ScreenContainer,
+} from "components/lib";
+import { Profiler } from "components/profiler";
 import { useDebounce, useDocumentTitle } from "utils";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
@@ -27,25 +32,22 @@ export const ProjectListScreen = () => {
   const { data: users } = useUsers();
 
   return (
-    <Container>
-      <Row between={true}>
-        <h1>项目列表</h1>
-        <ButtonNoPadding onClick={open} type="link">
-          创建项目
-        </ButtonNoPadding>
-      </Row>
+    <Profiler id="项目列表">
+      <ScreenContainer>
+        <Row between={true}>
+          <h1>项目列表</h1>
+          <ButtonNoPadding onClick={open} type="link">
+            创建项目
+          </ButtonNoPadding>
+        </Row>
 
-      <SearchPanel users={users || []} param={param} setParam={setParam} />
-      <ErrorBox error={error} />
-      <List loading={isLoading} users={users || []} dataSource={list || []} />
-    </Container>
+        <SearchPanel users={users || []} param={param} setParam={setParam} />
+        <ErrorBox error={error} />
+        <List loading={isLoading} users={users || []} dataSource={list || []} />
+      </ScreenContainer>
+    </Profiler>
   );
 };
 
 // 针对单个组件查找无线循环原因
 // ProjectListScreen.whyDidYouRender = true;
-
-const Container = styled.div`
-  padding: 3.2rem;
-  width: 100%;
-`;

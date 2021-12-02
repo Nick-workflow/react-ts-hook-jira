@@ -1,7 +1,7 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-12-02 03:22:00
+ * @LastEditTime: 2021-12-02 17:40:04
  * @Description: file content
  */
 
@@ -19,7 +19,7 @@ import { ProjectModal } from "screens/project-list/project-modal";
 import { ProjectPopover } from "components/project-popover";
 import { UserPopover } from "components/user-popover";
 
-export default () => {
+export default function AuthenticatedApp() {
   return (
     <Container>
       <Router>
@@ -35,7 +35,7 @@ export default () => {
       </Router>
     </Container>
   );
-};
+}
 
 const PageHeader = () => {
   return (
