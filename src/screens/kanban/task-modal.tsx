@@ -1,12 +1,11 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-28 18:16:50
+ * @LastEditTime: 2021-12-03 00:41:23
  * @Description: file content
  */
 
 import { Button, Form, Input, Modal } from "antd";
-import { useForm } from "antd/lib/form/Form";
 import { TaskTypeSelect } from "components/task-type-select";
 import { UserSelect } from "components/user-select";
 import { useEffect } from "react";
@@ -19,7 +18,7 @@ const layout = {
 };
 
 export const TaskModal = () => {
-  const [form] = useForm();
+  const [form] = Form.useForm();
   const { editingTaskId, editingTask, close } = useTasksModal();
   const { mutateAsync: editTask, isLoading: editLoading } = useEditTask(
     useTasksQueryKey()

@@ -1,13 +1,12 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-12-01 00:10:16
+ * @LastEditTime: 2021-12-03 00:41:04
  * @Description: file content
  */
 
 import styled from "@emotion/styled";
 import { Button, Drawer, DrawerProps, Form, Input, Spin } from "antd";
-import useForm from "antd/lib/form/hooks/useForm";
 import { ErrorBox } from "components/lib";
 import { useEffect } from "react";
 import { useProjectIdInUrl } from "screens/kanban/util";
@@ -18,7 +17,7 @@ export const CreateEpic = (
   props: Pick<DrawerProps, "visible"> & { onClose: () => void }
 ) => {
   const { mutate: addEpic, isLoading, error } = useAddEpic(useEpicsQueryKey());
-  const [form] = useForm();
+  const [form] = Form.useForm();
   const projectId = useProjectIdInUrl();
 
   const onFinish = async (values: any) => {

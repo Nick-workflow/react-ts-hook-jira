@@ -1,13 +1,12 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-11-15 23:02:37
+ * @LastEditTime: 2021-12-03 00:41:38
  * @Description: file content
  */
 
 import styled from "@emotion/styled";
 import { Button, Drawer, Form, Input, Spin } from "antd";
-import { useForm } from "antd/lib/form/Form";
 import { ErrorBox } from "components/lib";
 import { UserSelect } from "components/user-select";
 import { useEffect } from "react";
@@ -24,7 +23,7 @@ export const ProjectModal = () => {
     error,
     isLoading: mutateLoading,
   } = useMutateProject(useProjectsQueryKey());
-  const [form] = useForm();
+  const [form] = Form.useForm();
   const onFinish = (values: any) => {
     mutateAsync({ ...editingProject, ...values }).then(() => {
       form.resetFields();
