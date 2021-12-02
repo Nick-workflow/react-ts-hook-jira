@@ -1,13 +1,14 @@
 /*
  * @Author: YangTao(Niklaus)
  * @LastEditors: YangTao(Niklaus)
- * @LastEditTime: 2021-12-02 17:34:58
+ * @LastEditTime: 2021-12-03 00:36:48
  * @Description: file content
  */
 
 import { ReactNode } from "react";
 import { AuthProvider } from "./auth-contex";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter as Router } from "react-router-dom";
 
 export const AppProviders = ({ children }: { children: ReactNode }) => {
   const queryClient = new QueryClient({
@@ -21,7 +22,9 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>{children}</AuthProvider>
+      <Router>
+        <AuthProvider>{children}</AuthProvider>
+      </Router>
     </QueryClientProvider>
   );
 };
