@@ -65,11 +65,13 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
+    "@testing-library/react-hooks": "^7.0.2",
     "@welldone-software/why-did-you-render": "^6.2.1",
     "eslint-config-prettier": "^8.3.0",
     "husky": ">=6",
     "json-server": "^0.16.3",
     "lint-staged": ">=10",
+    "msw": "^0.35.0",
     "prettier": "2.4.1"
   },
   "lint-staged": {
